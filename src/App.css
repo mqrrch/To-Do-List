@@ -1,0 +1,94 @@
+*,
+*::before,
+*::after{
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Montserrat', Arial;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #797878;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.day-name{
+  font-size: clamp(1.8rem, 1.571rem + 1.143vw, 3.4rem);
+}
+
+.full-date{
+  font-size: clamp(1.2rem, 0.971rem + 1.143vw, 2.8rem);
+}
+
+#add-task-form input{
+  font-size: clamp(0.9rem, 0.771rem + 0.643vw, 1.8rem);
+}
+
+#sort-by, #remove-all{
+  font-size: clamp(0.9rem, 0.771rem + 0.643vw, 1.8rem);
+}
+
+.task-name, .task-settings{
+  font-size: clamp(0.8rem, 0.657rem + 0.714vw, 1.8rem);
+}
+
+.settings-name, .settings-memo{
+  font-size: clamp(1rem, 0.857rem + 0.714vw, 2rem);
+}
+
+.settings-btn-container{
+  font-size: clamp(0.8rem, 0.657rem + 0.714vw, 1.8rem);
+}
+  
+.remove-alert-text{
+  font-size: clamp(1rem, 0.857rem + 0.714vw, 2rem);
+}
+  
+.remove-alert-btn{
+  font-size: clamp(0.8rem, 0.657rem + 0.714vw, 1.8rem);
+}
+
+/* @media only screen and (min-width: 425px){
+  .task-name{
+    width: 30ch;
+  }
+
+  .settings-container{
+    height: auto;
+    max-width: 400px;
+  }
+
+  .settings-btn-container{
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .settings-btn-container button{
+    width: 12ch;
+  }
+
+  .remove-alert-container{
+    max-width: 350px;
+  }
+} */
+
+/* @media only screen and (min-width: 768px){
+  .to-do-list-container{
+    margin: auto;
+    max-width: 600px;
+    border-radius: 10px;
+  }
+
+  .task-name{
+    width: 40ch;
+  }
+} */
