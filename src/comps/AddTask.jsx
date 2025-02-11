@@ -1,25 +1,22 @@
 import { useState } from "react"
 
-function AddTask({ addTask }){
-    const [name, setName] = useState("")
-
+function AddTask({ newTodo, setNewTodo, addTask }){
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        addTask(name)
-        setName('')
+        addTask()
+        setNewTodo("")
     }
 
     return (
-        <form id="add-task-form" className="mt-3" onSubmit={handleSubmit}>
-            {/* <i className="add-task-icon p-[10px] min-w-[40px] fa-solid fa-bars-staggered absolute text-slate-700"></i> */}
-
+        <form id="add-task-form" className="mt-3 flex gap-4" onSubmit={handleSubmit}>
             <input name="task-name"
             id="task-name"
             placeholder="Add task..."
-            value={name}
-            onChange={e => setName(e.target.value)}
+            value={newTodo}
+            onChange={e => setNewTodo(e.target.value)}
             className="py-1 pl-3 w-full border-2 border-slate-500 rounded-lg" />
+            <button type="submit" className="bg-green-500 rounded-xl p-2 px-6 text-white">Add</button>
         </form>
     )
 }

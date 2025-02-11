@@ -1,10 +1,10 @@
 import { useState } from "react"
 import Task from "./Task"
 
-function TaskList({ taskList, toggleCompleted, editTask, removeTask, removeAllTask }){
+function TaskList({ todos, removeTask, editTask, toggleCompleted, removeAllTask }){
     const [sortBy, setSortBy] = useState('');
 
-    const sortedTask = [...taskList].sort((a, b) => {
+    const sortedTask = [...todos].sort((a, b) => {
         if(sortBy === 'not-completed'){
             return (a.completed === b.completed) ? 0 : a.completed ? 1 : -1;    
         }
@@ -29,19 +29,19 @@ function TaskList({ taskList, toggleCompleted, editTask, removeTask, removeAllTa
             <div className="h-[240px] overflow-auto mt-3">
                 {sortBy !== 'none' ? (
                     <div className="">
-                        {sortedTask.map((t, i) => (
+                        {sortedTask.map((t) => (
                             <Task {...t}
-                            key={i}
+                            key={t.id}
                             toggleCompleted={toggleCompleted}
                             editTask={editTask}
                             removeTask={removeTask} />
                         ))}
                     </div>
                 ) : (
-                    <div className="px-1 flex-1">
-                        {taskList.map((t, i) => (
+                    <div className="">
+                        {todos.map((t) => (
                             <Task {...t}
-                            key={i}
+                            key={t.id}
                             toggleCompleted={toggleCompleted}
                             editTask={editTask}
                             removeTask={removeTask} />

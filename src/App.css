@@ -29,7 +29,8 @@ body{
   font-size: clamp(1.2rem, 0.971rem + 1.143vw, 2.8rem);
 }
 
-#add-task-form input{
+#add-task-form input,
+#add-task-form button{
   font-size: clamp(0.9rem, 0.771rem + 0.643vw, 1.8rem);
 }
 
