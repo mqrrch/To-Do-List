@@ -15,16 +15,17 @@ function TaskList({ todos, removeTask, editTask, toggleCompleted, removeAllTask 
 
     return(
         <>
-            <div className="flex justify-between mt-3">
-                <select id="sort-by" name="sort-by" value={sortBy} onChange={e => setSortBy(e.target.value)}>
+            <div className="flex justify-between mt-4">
+                <select id="sort-by" name="sort-by" value={sortBy} onChange={e => setSortBy(e.target.value)}
+                className="rounded">
                     <option value='' disabled>Sort by</option>
                     <option value='none'>None</option>
                     <option value='not-completed'>Not Completed</option>
                     <option value='completed'>Completed</option>
                 </select>
-                <a id="remove-all" onClick={() => removeAllTask()} className="text-gray-200 hover:text-red-400 cursor-pointer">
+                <button id="remove-all" onClick={() => removeAllTask()} className="text-gray-200 hover:text-red-400 cursor-pointer transition-colors">
                     Remove All
-                </a>
+                </button>
             </div>
             <div className="h-[240px] overflow-auto mt-3">
                 {sortBy !== 'none' ? (

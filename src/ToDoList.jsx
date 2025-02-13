@@ -80,8 +80,10 @@ export default function ToDolist({ user }){
     }
     
     return (
-        <div className="to-do-list-container relative select-none bg-slate-700 flex flex-col justify-evenly [@media(min-width:500px)]:rounded-xl p-5 w-full h-full">
-            <a onClick={() => signOut(auth)} className="absolute top-4 left-4">Logout</a>
+        <div className="to-do-list-container relative select-none bg-slate-700 flex flex-col justify-around [@media(min-width:500px)]:rounded-xl p-5 py-10 w-full h-full max-w-[500px] max-h-[500px] lg:max-w-[700px] lg:max-h-[540px] xl:max-w-[800px] xl:max-h-[640px] 2xl:max-w-[900px]">
+            <a onClick={() => signOut(auth)} className="absolute top-4 left-4 cursor-pointer bg-red-500 hover:bg-red-600 transition-colors px-1 rounded">
+                <i className="fa-solid fa-arrow-right-from-bracket text-white"></i>
+            </a>
             <DateName />
             <AddTask newTodo={newTodo} setNewTodo={setNewTodo} addTask={addTask} />
             <TaskList todos={todos}

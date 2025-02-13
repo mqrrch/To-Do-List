@@ -14,7 +14,7 @@ export default function DateName(){
     const day = date.getDate();
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
-    const fullDate = `${month}-${day}-${year}`;
+    const fullDate = `${day}-${month}-${year}`;
 
     return (
         <div className="">

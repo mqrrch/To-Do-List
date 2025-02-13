@@ -52,7 +52,7 @@ function TaskSettings({ id, name, completed, memo, isSettingsOpen, setIsSettings
             {overlayTransition(
                 (styles, item) => 
                     item && (
-                        <animated.div className="fixed top-0 left-0 h-full w-full flex justify-center items-center bg-gray-500 z-10"
+                        <animated.div className="fixed top-0 left-0 h-full w-full flex justify-center items-center bg-gray-500 z-10 p-4"
                         style={{backgroundColor: 'rgba(0, 0, 0, 0.3)', pointerEvents: isSettingsOpen ? "auto" : "none", ...styles}}
                         onClick={handleExit}>
                             {settingsTransition(
@@ -61,14 +61,18 @@ function TaskSettings({ id, name, completed, memo, isSettingsOpen, setIsSettings
                                         onEdit ? (
                                             <>
                                                 <animated.form style={styles} onClick={e => e.stopPropagation()}
-                                                className='settings-container w-5/6 max-w-[400px] max-h-[460px] 2xl:max-w-[500px] 2xl:max-h-[560px] bg-gray-700 border-2 border-gray-500 rounded-lg flex flex-col p-6 z-20'>
+                                                className='settings-container w-full h-full max-w-[400px] max-h-[500px] 2xl:max-w-[500px] 2xl:max-h-[600px] bg-gray-700 border-2 border-gray-500 rounded-lg flex flex-col p-6 z-20'>
                                                     <i onClick={handleExit} className="fa-solid fa-xmark absolute top-2 right-4 text-2xl text-gray-100 cursor-pointer"></i>
                                                     
-                                                    <label htmlFor="settings-name" className="settings-name text-gray-100">Name</label>
-                                                    <input id="settings-name" name="settings-name" value={newName} onChange={e => setNewName(e.target.value)} title={name} className="settings-name pl-1 text-gray-100 bg-slate-500" />
+                                                    <div id="settings-name-container" className="flex flex-col">
+                                                        <label htmlFor="settings-name" className="settings-name text-gray-100">Name</label>
+                                                        <input id="settings-name" name="settings-name" value={newName} onChange={e => setNewName(e.target.value)} title={name} className="settings-name pl-1 text-gray-100 bg-slate-500" />
+                                                    </div>
                                                     
-                                                    <label htmlFor="settings-memo" className="settings-memo mt-3 text-gray-100">Memo</label>
-                                                    <textarea id="settings-memo" name="settings-memo" value={newMemo} onChange={e => setNewMemo(e.target.value)} rows={6} className="settings-memo pl-1 resize-none text-gray-100 bg-slate-500"></textarea>
+                                                    <div id="settings-memo-container" className="flex flex-col flex-1">
+                                                        <label htmlFor="settings-memo" className="mt-3 text-gray-100">Memo</label>
+                                                        <textarea id="settings-memo" name="settings-memo" value={newMemo} onChange={e => setNewMemo(e.target.value)} rows={6} className="settings-memo pl-1 resize-none text-gray-100 bg-slate-500 flex-1"></textarea>
+                                                    </div>
                                                     
                                                     <div className="settings-btn-container flex flex-col mt-3 gap-3">
                                                         <button type="button" onClick={() => setIsRemoveAlert(true)} className="bg-red-400 p-1 rounded text-gray-100">Remove</button>
@@ -84,16 +88,20 @@ function TaskSettings({ id, name, completed, memo, isSettingsOpen, setIsSettings
                                         ) : (
                                             <>
                                                 <animated.form style={styles} onClick={e => e.stopPropagation()}
-                                                className='settings-container w-5/6 max-w-[400px] max-h-[460px] 2xl:max-w-[500px] 2xl:max-h-[560px] bg-gray-700 border-2 border-gray-500 rounded-lg flex flex-col p-6 z-20'>
+                                                className='settings-container w-full h-full max-w-[400px] max-h-[500px] 2xl:max-w-[500px] 2xl:max-h-[600px] bg-gray-700 border-2 border-gray-500 rounded-lg flex flex-col p-6 z-20'>
                                                     <i onClick={handleExit} className="fa-solid fa-xmark absolute top-2 right-4 text-2xl text-gray-100 cursor-pointer"></i>
                                                     
-                                                    <label htmlFor="settings-name" className="settings-name text-gray-100">Name</label>
-                                                    <input id="settings-name" name="settings-name" value={name} title={name} className="settings-name pl-1 text-gray-100 bg-slate-600" disabled />
+                                                    <div id="settings-name-container" className="flex flex-col">
+                                                        <label htmlFor="settings-name" className="text-gray-100">Name</label>
+                                                        <input id="settings-name" name="settings-name" value={name} title={name} className="settings-name pl-1 text-gray-100 bg-slate-600" disabled />
+                                                    </div>
                                                     
-                                                    <label htmlFor="settings-memo" className="settings-memo mt-3 text-gray-100">Memo</label>
-                                                    <textarea id="settings-memo" name="settings-memo" value={memo} rows={6} className="settings-memo pl-1 resize-none text-gray-100 bg-slate-600" disabled></textarea>
+                                                    <div id="settings-memo-container" className="flex flex-col flex-1">
+                                                        <label htmlFor="settings-memo" className="mt-3 text-gray-100">Memo</label>
+                                                        <textarea id="settings-memo" name="settings-memo" value={memo} rows={6} className="settings-memo pl-1 resize-none text-gray-100 bg-slate-600 flex-1 mb-4" disabled></textarea>
+                                                    </div>
                                                     
-                                                    <div className="settings-btn-container flex flex-col mt-3 gap-3">
+                                                    <div className="settings-btn-container flex flex-col gap-3 mt-auto">
                                                         <button type="button" onClick={() => setIsRemoveAlert(true)} className="bg-red-400 p-1 rounded text-gray-100">Remove</button>
                                                         <button type="button" onClick={() => setOnEdit(true)} className="bg-blue-400 p-1 rounded text-gray-100">Edit</button>
                                                         <button type="button" onClick={handleExit} className="bg-green-400 p-1 rounded text-gray-100">Ok</button>
