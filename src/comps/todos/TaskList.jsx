@@ -1,8 +1,11 @@
 import { useState } from "react"
 import Task from "./Task"
+import { useDispatch } from "react-redux";
+import { showAlert } from "../../store/alertSlice";
 
-function TaskList({ todos, removeTask, editTask, toggleCompleted, removeAllTask }){
+function TaskList({ todos, removeTask, editTask, toggleCompleted }){
     const [sortBy, setSortBy] = useState('');
+    const dispatch = useDispatch()
 
     const sortedTask = [...todos].sort((a, b) => {
         if(sortBy === 'not-completed'){
@@ -23,7 +26,8 @@ function TaskList({ todos, removeTask, editTask, toggleCompleted, removeAllTask 
                     <option value='not-completed'>Not Completed</option>
                     <option value='completed'>Completed</option>
                 </select>
-                <button id="remove-all" onClick={() => removeAllTask()} className="text-gray-200 hover:text-red-400 cursor-pointer transition-colors">
+                <button id="remove-all" onClick={() => dispatch(showAlert({ alertType: 'REMOVE_ALL'}))}
+                className="text-gray-200 hover:text-red-400 cursor-pointer transition-colors">
                     Remove All
                 </button>
             </div>

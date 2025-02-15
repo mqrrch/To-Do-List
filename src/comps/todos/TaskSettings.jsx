@@ -2,7 +2,7 @@ import { useTransition, animated } from "@react-spring/web";
 import { useState } from "react";
 import TaskRemove from "./TaskRemove";
 
-function TaskSettings({ id, name, completed, memo, isSettingsOpen, setIsSettingsOpen, editTask, removeTask }){
+function TaskSettings({ id, name, memo, isSettingsOpen, setIsSettingsOpen, editTask, removeTask }){
     const settingsTransition = useTransition(isSettingsOpen, {
         from: { transform: "translateY(150%)" },
         enter: { transform: "translateY(0%)" },
@@ -36,9 +36,6 @@ function TaskSettings({ id, name, completed, memo, isSettingsOpen, setIsSettings
     };
 
     const handleRemove = () => {
-        setIsRemoveAlert(false);
-        setIsSettingsOpen(false);
-        setOnEdit(false);
         removeTask(id);
     }
 

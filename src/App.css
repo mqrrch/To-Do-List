@@ -21,13 +21,40 @@ body{
   background: #555;
 }
 
+
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 8px solid #514b82;
+  animation:
+    l20-1 0.8s infinite linear alternate,
+    l20-2 1.6s infinite linear;
+}
+@keyframes l20-1{
+   0%    {clip-path: polygon(50% 50%,0       0,  50%   0%,  50%    0%, 50%    0%, 50%    0%, 50%    0% )}
+   12.5% {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100%   0%, 100%   0%, 100%   0% )}
+   25%   {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100% 100%, 100% 100%, 100% 100% )}
+   50%   {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100% 100%, 50%  100%, 0%   100% )}
+   62.5% {clip-path: polygon(50% 50%,100%    0, 100%   0%,  100%   0%, 100% 100%, 50%  100%, 0%   100% )}
+   75%   {clip-path: polygon(50% 50%,100% 100%, 100% 100%,  100% 100%, 100% 100%, 50%  100%, 0%   100% )}
+   100%  {clip-path: polygon(50% 50%,50%  100%,  50% 100%,   50% 100%,  50% 100%, 50%  100%, 0%   100% )}
+}
+@keyframes l20-2{ 
+  0%    {transform:scaleY(1)  rotate(0deg)}
+  49.99%{transform:scaleY(1)  rotate(135deg)}
+  50%   {transform:scaleY(-1) rotate(0deg)}
+  100%  {transform:scaleY(-1) rotate(-135deg)}
+}
+
+
 #auth-form-container h2{
-  font-size: clamp(1.5rem, 1.125rem + 1.875vw, 3rem);
+  font-size: clamp(1.5rem, 1.313rem + 0.938vw, 2.25rem);
 }
 
 #email-auth-container label,
 #password-auth-container label{
-  font-size: clamp(0.938rem, 0.703rem + 1.172vw, 1.875rem);
+  font-size: clamp(0.938rem, 0.766rem + 0.859vw, 1.625rem);
 }
 #email-auth-container input,
 #password-auth-container input{
@@ -35,23 +62,21 @@ body{
 }
 
 #auth-submit-btn{
-  font-size: clamp(0.875rem, 0.625rem + 1.25vw, 1.875rem);
+  font-size: clamp(0.875rem, 0.719rem + 0.781vw, 1.5rem);
 }
 
 #auth-switch-text{
-  font-size: clamp(0.688rem, 0.563rem + 0.625vw, 1.188rem);
+  font-size: clamp(0.688rem, 0.594rem + 0.469vw, 1.063rem);
 }
 
 #auth-login-methods-container p{
-  font-size: clamp(1.125rem, 0.938rem + 0.938vw, 1.875rem);
-}
-
-#auth-login-methods-logos p,
-#auth-login-methods-logos div{
-  font-size: clamp(1rem, 0.813rem + 0.938vw, 1.75rem);
+  font-size: clamp(1.125rem, 1rem + 0.625vw, 1.625rem);
 }
 
 
+#logout{
+  font-size: clamp(1rem, 0.938rem + 0.313vw, 1.25rem);
+}
 
 .day-name{
   font-size: clamp(1.75rem, 1.344rem + 2.031vw, 3.375rem);
@@ -83,46 +108,10 @@ body{
   font-size: clamp(0.813rem, 0.641rem + 0.859vw, 1.5rem);
 }
   
-.remove-alert-text{
+.alert-text{
   font-size: clamp(1rem, 0.875rem + 0.625vw, 1.5rem);
 }
   
-.remove-alert-btn{
+.alert-btn{
   font-size: clamp(0.813rem, 0.703rem + 0.547vw, 1.25rem);
 }
-
-/* @media only screen and (min-width: 425px){
-  .task-name{
-    width: 30ch;
-  }
-
-  .settings-container{
-    height: auto;
-    max-width: 400px;
-  }
-
-  .settings-btn-container{
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .settings-btn-container button{
-    width: 12ch;
-  }
-
-  .remove-alert-container{
-    max-width: 350px;
-  }
-} */
-
-/* @media only screen and (min-width: 768px){
-  .to-do-list-container{
-    margin: auto;
-    max-width: 600px;
-    border-radius: 10px;
-  }
-
-  .task-name{
-    width: 40ch;
-  }
-} */

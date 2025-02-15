@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import AddTask from "./comps/AddTask";
-import TaskList from "./comps/TaskList";
-import DateName from "./comps/DateName";
-import { auth, db } from "./firebase";
+import AddTask from "./AddTask";
+import TaskList from "./TaskList";
+import DateName from "./DateName";
+import { auth, db } from "../../firebase";
 import { signOut } from "firebase/auth";
 import {
     collection,
@@ -16,12 +16,19 @@ import {
     onSnapshot,
     serverTimestamp, 
     writeBatch } from "firebase/firestore";
+import { useDispatch } from "react-redux";
+import { setLoading } from "../../store/loadingSlice";
+import AlertPopup from "./AlertPopup";
+import { showAlert } from "../../store/alertSlice";
 
 export default function ToDolist({ user }){
     const [todos, setTodos] = useState([]);
     const [newTodo, setNewTodo] = useState("");
+    const dispatch = useDispatch();
 
     useEffect(() => {
+        if (!user) return;
+        dispatch(setLoading(true))
         const q = query(
             collection(db, "todos"),
             where('uid', '==', user.uid),
@@ -33,6 +40,9 @@ export default function ToDolist({ user }){
                 todosArr.push({...doc.data(), id: doc.id});
             });
             setTodos(todosArr);
+            dispatch(setLoading(false))
+        }, err => {
+            console.error(err)
         });
         return unsubscribe;
     }, [user]);
@@ -78,12 +88,22 @@ export default function ToDolist({ user }){
             console.error(err)
         }
     }
+
+    const logout = async () => {
+        try {
+            signOut(auth);
+        } catch (err){
+            console.error(err);
+        }
+    }
     
     return (
-        <div className="to-do-list-container relative select-none bg-slate-700 flex flex-col justify-around [@media(min-width:500px)]:rounded-xl p-5 py-10 w-full h-full max-w-[500px] max-h-[500px] lg:max-w-[700px] lg:max-h-[540px] xl:max-w-[800px] xl:max-h-[640px] 2xl:max-w-[900px]">
-            <a onClick={() => signOut(auth)} className="absolute top-4 left-4 cursor-pointer bg-red-500 hover:bg-red-600 transition-colors px-1 rounded">
+        <div className="to-do-list-container relative select-none bg-slate-700 flex flex-col justify-around [@media(min-width:500px)]:rounded-xl p-5 py-10 w-full h-full max-w-[500px] lg:max-w-[700px] xl:max-w-[800px] 2xl:max-w-[900px] max-h-[540px] xl:max-h-[600px]">
+            <a onClick={() => dispatch(showAlert({ alertType: "LOGOUT" }))} id="logout"
+            className="absolute top-4 left-4 cursor-pointer bg-red-500 hover:bg-red-600 transition-colors px-1 rounded">
                 <i className="fa-solid fa-arrow-right-from-bracket text-white"></i>
             </a>
+            <AlertPopup removeAllTask={removeAllTask} logout={logout} />
             <DateName />
             <AddTask newTodo={newTodo} setNewTodo={setNewTodo} addTask={addTask} />
             <TaskList todos={todos}
